@@ -1,0 +1,21 @@
+1)
+INSERT INTO `ñ`.`prizes` (`id`, `title`, `year`) VALUES (NULL, 'gold cup', '1994');
+INSERT INTO `ñ`.`stadiums` (`id`, `title`, `year`, `roominess`) VALUES (NULL, 'stadium #1', '1984', '2000'); 
+INSERT INTO `ñ`.`leagues` (`id`, `title`, `country`, `rate`, `president`) VALUES (NULL, 'new league', 'holand', '100.00', 'W.A.Bush');
+INSERT INTO `ñ`.`clubs` (`id`, `title`, `city`, `country`, `league`, `year`, `prizes`, `budget`, `president`, `stadium`) VALUES (NULL, 'Chelsea', 'London', 'UK', '1', '2000', '1', '77777777', 'Abramovich', '1'); 
+
+2)
+SELECT * FROM `clubs` LEFT JOIN leagues ON clubs.league = leagues.id LEFT JOIN prizes ON clubs.prizes = prizes.id LEFT JOIN stadiums ON clubs.stadium = stadiums.id  
+
+
+3)
+SELECT * FROM `clubs` LEFT JOIN leagues ON clubs.league = leagues.id LEFT JOIN prizes ON clubs.prizes = prizes.id LEFT JOIN stadiums ON clubs.stadium = stadiums.id WHERE clubs.title LIKE '%els%'
+
+4)
+SELECT * FROM `clubs` LEFT JOIN leagues ON clubs.league = leagues.id LEFT JOIN prizes ON clubs.prizes = prizes.id LEFT JOIN stadiums ON clubs.stadium = stadiums.id WHERE leagues.title = 'high league' AND prizes.title = 'gold cup' AND stadiums.title = 'stadium #1'
+
+5)
+SELECT * FROM prizes WHERE (SELECT id from clubs WHERE title = 'Chelsea')
+
+6)
+SELECT * FROM prizes WHERE (SELECT id from clubs WHERE title = 'Chelsea') ORDER BY year
